@@ -103,20 +103,30 @@ function getAllWinners(callback1, callback2) {
     return newArray;
 };
 
-console.log(getAllWinners(getYears(getFinals(fifaData)), getWinners(getFinals(fifaData))));
+getAllWinners(getYears(getFinals(fifaData)), getWinners(getFinals(fifaData)));
 
 /* Task 7: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had. 
 
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
+function getCountryWins(data, teamIn) {
 
-    /* code here */
-
+ 
+    let totalWins = data.reduce(function(accum, item){
+        if (item[ "Home Team Initials" ] === teamIn && item[ "Home Team Goals" ] > item[ "Away Team Goals" ]) {
+            return accum + 1;
+        } else if (item[ "Away Team Initials" ] === teamIn && item[ "Away Team Goals" ] > item[ "Home Team Goals" ]){
+            return accum + 1;
+        }
+        
+        return accum 
+    }, 0);
+    
+    return totalWins;
 };
 
-getCountryWins();
+console.log(getCountryWins(getFinals(fifaData), "BRA"));
 
 
 /* Task 8: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
