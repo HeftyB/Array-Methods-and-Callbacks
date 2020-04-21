@@ -45,7 +45,7 @@ function getFinals(data) {
 
 };
 
-console.log(getFinals(fifaData));
+getFinals(fifaData);
 
 /* Task 3: Impliment a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
@@ -85,7 +85,7 @@ function getWinners(callback) {
 
 };
 
-console.log(getWinners(getFinals(fifaData)));
+getWinners(getFinals(fifaData));
 
 /* Task 6: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
 
@@ -94,11 +94,16 @@ Parameters:
  * callback function getYears
  */
 
-function getAllWinners(/* code here */) {
-
+function getAllWinners(callback1, callback2) {
+    
+    let newArray = [];
+    for (let i = 0; i < callback1.length; i++) {
+        newArray.push(`in year ${callback1[i]}, ${callback2[i]} won the world cup`);
+    }
+    return newArray;
 };
 
-getAllWinners();
+console.log(getAllWinners(getYears(getFinals(fifaData)), getWinners(getFinals(fifaData))));
 
 /* Task 7: Create a function called `getCountryWins` that takes the parameters `data` and `team initials` and returns the number of world cup wins that country has had. 
 
