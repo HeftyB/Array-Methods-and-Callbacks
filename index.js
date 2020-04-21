@@ -32,20 +32,24 @@ fifaData.forEach(function(item){
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(data, query) {
+function getFinals(data) {
 
-    return data.filter(function (item) {
-        let newVar = item.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    let finalsArray = [];
+    data.forEach(function(item){
+        if (item.Stage === "Final" || item.Stage === "Semi-finals" || item.Stage === "Quarter-finals") {
+            finalsArray.push(item);
+        }
     });
 
+    return finalsArray;
 
 };
 
-console.log(getFinals(fifaData, "final"));
+console.log(getFinals(fifaData));
 
 /* Task 3: Impliment a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(/* code here */) {
+function getYears(getFinals(fifaData)) {
 
     /* code here */
 
